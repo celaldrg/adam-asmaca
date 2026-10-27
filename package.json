@@ -1,0 +1,11 @@
+{
+  "name": "adam-asmaca",
+  "version": "1.0.0",
+  "description": "Adam Asmaca: a bilingual (Turkish/English) hangman word game for the browser with Turkish-correct letters (ı/i, İ/I).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

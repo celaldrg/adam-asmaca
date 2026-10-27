@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam Asmaca</title>
+  <meta name="description" content="Adam Asmaca is a hangman word game in English and Turkish that knows ı from i: Turkish alphabet, hints, score and streak, touch and keyboard play.">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adam Asmaca">
+  <meta property="og:description" content="A bilingual hangman word game with Turkish-correct letters (ı/i, İ/I). Play in the browser on desktop or phone.">
+  <meta property="og:url" content="https://celaldrg.github.io/adam-asmaca/">
+  <meta property="og:image" content="https://celaldrg.github.io/adam-asmaca/docs/screenshot.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M13 52h26M21 52V12h23v8' fill='none' stroke='%23a3e635' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='44' cy='28' r='7' fill='none' stroke='%23e2e8f0' stroke-width='4'/%3E%3Cpath d='M44 35v9' stroke='%23e2e8f0' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="bar">
+      <h1 class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect width="64" height="64" rx="14" fill="#1e293b"/>
+          <path d="M13 52h26M21 52V12h23v8" fill="none" stroke="#a3e635" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="44" cy="28" r="7" fill="none" stroke="#e2e8f0" stroke-width="4"/>
+          <path d="M44 35v9" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span data-i18n="appTitle">Adam Asmaca</span>
+      </h1>
+      <div class="header-actions">
+        <button type="button" class="btn" id="new-game" data-i18n-title="newGameTitle" title="Skip to a new word">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.35-5.65"/><path d="M20 4v5h-5"/></svg>
+          <span data-i18n="newGame">New game</span>
+        </button>
+        <button type="button" class="btn btn-square" id="ui-lang" data-i18n="langToggle" data-i18n-label="langToggleLabel" aria-label="TR: switch the interface to Turkish">TR</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="game">
+    <div class="toolbar">
+      <label class="field">
+        <span class="field-label" data-i18n="wordList">Words</span>
+        <select class="select" id="word-list">
+          <option value="en" data-i18n="langEnglish">English</option>
+          <option value="tr" data-i18n="langTurkish">Turkish</option>
+        </select>
+      </label>
+      <dl class="stats">
+        <div class="stat"><dt data-i18n="score">Score</dt><dd id="stat-score">0</dd></div>
+        <div class="stat"><dt data-i18n="streak">Streak</dt><dd id="stat-streak">0</dd></div>
+        <div class="stat stat-best"><dt data-i18n="best">Best</dt><dd id="stat-best">0</dd></div>
+      </dl>
+    </div>
+
+    <section class="stage is-intro" id="stage" data-status="playing" data-face="none">
+      <div class="stage-top">
+        <p class="category"><span class="visually-hidden" data-i18n="category">Category</span> <span id="category"></span></p>
+        <div class="misses" id="misses" role="img"></div>
+      </div>
+      <svg class="gallows" id="gallows" viewBox="0 0 240 260" role="img">
+        <ellipse class="ground" cx="100" cy="247" rx="92" ry="7"/>
+        <g class="frame">
+          <path style="--i: 0" pathLength="1" d="M22 244H178"/>
+          <path style="--i: 1" pathLength="1" d="M60 244V24"/>
+          <path style="--i: 2" pathLength="1" d="M60 24H172"/>
+          <path style="--i: 3" pathLength="1" d="M60 66 102 24"/>
+          <path class="rope" style="--i: 4" pathLength="1" d="M160 24V56"/>
+        </g>
+        <g class="figure">
+          <path class="part" style="--p: 0" pathLength="1" d="M160 56a18 18 0 1 1 0 36a18 18 0 1 1 0-36"/>
+          <path class="part" style="--p: 1" pathLength="1" d="M160 92v62"/>
+          <path class="part" style="--p: 2" pathLength="1" d="M160 106 136 134"/>
+          <path class="part" style="--p: 3" pathLength="1" d="M160 106 184 134"/>
+          <path class="part" style="--p: 4" pathLength="1" d="M160 154 141 200"/>
+          <path class="part" style="--p: 5" pathLength="1" d="M160 154 179 200"/>
+          <g class="face face-lost">
+            <path d="M150 69l6 6m0-6-6 6M164 69l6 6m0-6-6 6"/>
+            <path d="M153 86q7-5 14 0"/>
+          </g>
+          <g class="face face-won">
+            <circle cx="154" cy="71" r="2.6"/>
+            <circle cx="166" cy="71" r="2.6"/>
+            <path d="M153 80q7 6 14 0"/>
+          </g>
+        </g>
+      </svg>
+    </section>
+
+    <div class="word" id="word" role="img"></div>
+
+    <div class="status-row">
+      <p class="status" id="status" role="status" data-tone="info"></p>
+      <button type="button" class="btn btn-hint" id="hint">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg>
+        <span data-i18n="hint">Hint</span>
+        <small class="cost" data-i18n="hintCost">−1 life</small>
+      </button>
+      <button type="button" class="btn btn-primary" id="next" hidden>
+        <span data-i18n="nextWord">Next word</span>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="keyboard" id="keyboard" role="group" data-i18n-label="keyboardLabel" aria-label="Letters"></div>
+  </main>
+
+  <footer class="site-footer">
+    <span data-i18n="footerLicense">MIT</span>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/celaldrg/adam-asmaca" data-i18n="footerSource">Source on GitHub</a>
+  </footer>
+
+  <dialog class="result" id="result" aria-labelledby="result-title">
+    <div class="result-body">
+      <svg class="result-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+        <circle cx="24" cy="24" r="21"/>
+        <path class="icon-won" d="M15 24.5l6 6 12-13"/>
+        <path class="icon-lost" d="M17 17l14 14M31 17 17 31"/>
+      </svg>
+      <h2 class="result-title" id="result-title"></h2>
+      <p class="result-label" data-i18n="theWordWas">The word was</p>
+      <p class="result-word" id="result-word"></p>
+      <p class="result-category" id="result-category"></p>
+      <p class="result-points" id="result-points"></p>
+      <dl class="result-stats">
+        <div><dt data-i18n="score">Score</dt><dd id="result-score">0</dd></div>
+        <div><dt data-i18n="streak">Streak</dt><dd id="result-streak">0</dd></div>
+        <div><dt data-i18n="best">Best</dt><dd id="result-best">0</dd></div>
+      </dl>
+      <button type="button" class="btn btn-primary btn-wide" id="result-next" autofocus>
+        <span data-i18n="nextWord">Next word</span>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </dialog>
+</body>
+</html>
