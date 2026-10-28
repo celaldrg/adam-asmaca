@@ -5,10 +5,10 @@
 
 import { getLivesLeft } from './round.js';
 
-/** Points for every won round. */
+/** Points for every won round. Exported as a test seam. */
 export const POINTS_PER_WIN = 10;
 
-/** Extra points for each life left when the word is solved. */
+/** Extra points for each life left when the word is solved. Exported as a test seam. */
 export const POINTS_PER_LIFE = 5;
 
 /**

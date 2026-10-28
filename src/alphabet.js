@@ -4,7 +4,7 @@
  * so every case change goes through the language's locale ('tr' or 'en').
  */
 
-/** Supported word-list languages; the codes double as locale tags. */
+/** Supported word-list languages; the codes double as locale tags. Exported as a test seam. */
 export const LANGUAGES = Object.freeze(['en', 'tr']);
 
 const ALPHABETS = Object.freeze({

@@ -13,7 +13,7 @@ const PREFIX = 'adam-asmaca:';
  */
 
 /**
- * Creates a storage helper around a Web Storage-like backend.
+ * Creates a storage helper around a Web Storage-like backend. Exported as a test seam (tests inject a fake backend).
  * @param {() => (Pick<Storage, 'getItem'|'setItem'>|null|undefined)} [getBackend]
  *   Returns the backend when it is needed; defaults to the page's localStorage.
  * @returns {KeyValueStore}

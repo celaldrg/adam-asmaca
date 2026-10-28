@@ -6,7 +6,7 @@
 /** Narrowest tap cell for one key, in CSS pixels; the visible key is drawn inside it. */
 export const MIN_KEY_CELL = 42;
 
-/** Most keys in one row, so rows stay compact on wide screens. */
+/** Most keys in one row, so rows stay compact on wide screens. Exported as a test seam. */
 export const MAX_KEYS_PER_ROW = 10;
 
 /**

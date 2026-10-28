@@ -6,7 +6,7 @@
 
 import { isLanguage } from './alphabet.js';
 
-/** Category ids, in display order. */
+/** Category ids, in display order. Exported as a test seam. */
 export const CATEGORIES = Object.freeze(['animals', 'cities', 'food', 'objects']);
 
 const CATEGORY_LABELS = Object.freeze({

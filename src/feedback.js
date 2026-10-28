@@ -48,7 +48,7 @@ export function roundStartMessage(previous) {
 }
 
 /**
- * Message for the end of a round.
+ * Message for the end of a round. Exported as a test seam; the UI reaches it through guessMessage and hintMessage.
  * @param {import('./round.js').Round} round A won or lost round.
  * @param {number} points Points the round earned.
  * @returns {Message}

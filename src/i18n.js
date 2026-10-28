@@ -7,7 +7,7 @@
 
 import { isLanguage } from './alphabet.js';
 
-/** Interface language of a first visit. */
+/** Interface language of a first visit. Exported as a test seam. */
 export const DEFAULT_UI_LANG = 'en';
 
 /**
@@ -107,7 +107,7 @@ const TR = Object.freeze({
   msgSkipped: ({ word }) => `Önceki kelime ${word} idi, kayıp sayıldı.`,
 });
 
-/** Every interface string, per language. Both tables have the same keys. */
+/** Every interface string, per language. Both tables have the same keys. Exported as a test seam. */
 export const STRINGS = Object.freeze({ en: EN, tr: TR });
 
 /**
